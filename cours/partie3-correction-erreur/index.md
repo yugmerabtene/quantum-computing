@@ -1,4 +1,4 @@
-# Partie III : Correction d'erreur quantique (Séances 9–11)
+# Partie III : Correction d'erreur quantique (Chapitres 9–11)
 
 ## Présentation
 
@@ -6,24 +6,24 @@ La correction d'erreur quantique est l'un des défis les plus importants pour la
 
 ## Tableau récapitulatif
 
-| Séance | Sujet | Bibliothèques | Concepts clés |
+| Chapitre | Sujet | Bibliothèques | Concepts clés |
 |--------|-------|---------------|---------------|
-| [9.1 — Motivation](seance9-1-motivation.md) | Fragilité des qubits, décohérence, seuil | QuTiP, Qiskit | Canaux de bruit, T₁/T₂, théorème du seuil, décomposition de Kraus |
-| [9.2 — Codes correcteurs](seance9-2-codes-correcteurs.md) | Code répétition, Shor [9,1,3], CSS, stabilisateurs | QuTiP, Qiskit | Non-clonage, syndromes, formalisme stabilisateur, code de Steane |
-| [10.1 — Codes de surface](seance10-1-codes-surface.md) | Grille 2D, syndrome, MWPM, passage sous le seuil | Stim, pymatching, Qiskit | Stabilisateurs 2D, décodage MWPM, Google Willow 2024 |
-| [10.2 — Codes QLDPC](seance10-2-codes-qldpc.md) | Couleur, Floquet, QLDPC, SHYPS | Stim, numpy | Taux de code non nul, hypergraphes, décodeur BP, comparaison architectures |
-| [11.1 — Calcul tolérant](seance11-1-calcul-tolerant.md) | États magiques, distillation, Clifford+T, AFT | Qiskit, QuTiP, numpy | Distillation 15-to-1, seuil, Solovay-Kitaev, AFT QuEra 2025 |
-| [11.2 — Avancées 2024–2026](seance11-2-avancees-2024-2026.md) | Willow, Harvard 48Q, CAV 2025, défis ouverts | Stim, pymatching, numpy | Passage sous le seuil, processeur logique, vérification formelle |
+| [9.1 — Motivation](chapitre9-1-motivation.md) | Fragilité des qubits, décohérence, seuil | QuTiP, Qiskit | Canaux de bruit, T₁/T₂, théorème du seuil, décomposition de Kraus |
+| [9.2 — Codes correcteurs](chapitre9-2-codes-correcteurs.md) | Code répétition, Shor [9,1,3], CSS, stabilisateurs | QuTiP, Qiskit | Non-clonage, syndromes, formalisme stabilisateur, code de Steane |
+| [10.1 — Codes de surface](chapitre10-1-codes-surface.md) | Grille 2D, syndrome, MWPM, passage sous le seuil | Stim, pymatching, Qiskit | Stabilisateurs 2D, décodage MWPM, Google Willow 2024 |
+| [10.2 — Codes QLDPC](chapitre10-2-codes-qldpc.md) | Couleur, Floquet, QLDPC, SHYPS | Stim, numpy | Taux de code non nul, hypergraphes, décodeur BP, comparaison architectures |
+| [11.1 — Calcul tolérant](chapitre11-1-calcul-tolerant.md) | États magiques, distillation, Clifford+T, AFT | Qiskit, QuTiP, numpy | Distillation 15-to-1, seuil, Solovay-Kitaev, AFT QuEra 2025 |
+| [11.2 — Avancées 2024–2026](chapitre11-2-avancees-2024-2026.md) | Willow, Harvard 48Q, CAV 2025, défis ouverts | Stim, pymatching, numpy | Passage sous le seuil, processeur logique, vérification formelle |
 
 ## Prérequis
 
-- **Séances 1–4** : postulats de la mécanique quantique, formalisme de la matrice densité
-- **Séance 4.2** : canaux quantiques et bruit (modèles de Kraus)
+- **Chapitres 1–4** : postulats de la mécanique quantique, formalisme de la matrice densité
+- **Chapitre 4.2** : canaux quantiques et bruit (modèles de Kraus)
 - Python : numpy, QuTiP, Qiskit, Stim, pymatching
 
 ## Plan détaillé
 
-### Séance 9.1 — Motivation et défis (seance9-1-motivation.md)
+### Chapitre 9.1 — Motivation et défis (chapitre9-1-motivation.md)
 
 1. Fragilité des qubits et décohérence
    - T₁ (relaxation) et T₂ (déphasage)
@@ -36,7 +36,7 @@ La correction d'erreur quantique est l'un des défis les plus importants pour la
    - Passage sous le seuil : scaling exponentiel
 4. Simulation QuTiP : canaux dépolarisant, bit-flip, phase-flip
 
-### Séance 9.2 — Codes correcteurs (seance9-2-codes-correcteurs.md)
+### Chapitre 9.2 — Codes correcteurs (chapitre9-2-codes-correcteurs.md)
 
 1. Code à répétition de phase (3 qubits)
    - Encodage, syndrome, correction
@@ -49,7 +49,7 @@ La correction d'erreur quantique est l'un des défis les plus importants pour la
    - Groupe de Pauli, représentation binaire
    - Mesures de syndrome
 
-### Séance 10.1 — Codes de surface (seance10-1-codes-surface.md)
+### Chapitre 10.1 — Codes de surface (chapitre10-1-codes-surface.md)
 
 1. Stabilisateurs sur grille 2D
    - Plaquettes Z et étoiles X
@@ -64,7 +64,7 @@ La correction d'erreur quantique est l'un des défis les plus importants pour la
    - Passage sous le seuil
    - Scaling exponentiel
 
-### Séance 10.2 — Codes QLDPC (seance10-2-codes-qldpc.md)
+### Chapitre 10.2 — Codes QLDPC (chapitre10-2-codes-qldpc.md)
 
 1. Codes de couleur
    - Triangulation 2D, portes transversales
@@ -77,7 +77,7 @@ La correction d'erreur quantique est l'un des défis les plus importants pour la
    - Hypergraphes, tolérance à la perte
 5. Comparaison des architectures
 
-### Séance 11.1 — Calcul tolérant (seance11-1-calcul-tolerant.md)
+### Chapitre 11.1 — Calcul tolérant (chapitre11-1-calcul-tolerant.md)
 
 1. États magiques et distillation
    - Portes non-Clifford, état |T⟩
@@ -91,7 +91,7 @@ La correction d'erreur quantique est l'un des défis les plus importants pour la
 4. Framework AFT (QuEra 2025)
    - Protection adaptative, réduction du surcoût
 
-### Séance 11.2 — Avancées 2024–2026 (seance11-2-avancees-2024-2026.md)
+### Chapitre 11.2 — Avancées 2024–2026 (chapitre11-2-avancees-2024-2026.md)
 
 1. Google Willow : passage sous le seuil
    - Analyse des données, scaling exponentiel

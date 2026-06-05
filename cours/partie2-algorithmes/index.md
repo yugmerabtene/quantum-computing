@@ -2,7 +2,7 @@
 
 ## Table des matières
 
-| Séance | Titre | Sujets | Oracle | QPE | QFT | Grover |
+| Chapitre | Titre | Sujets | Oracle | QPE | QFT | Grover |
 |--------|-------|--------|--------|-----|-----|--------|
 | 5.1 | Deutsch-Jozsa | Parallélisme quantique, promesse constante/équilibrée | ✓ | | | |
 | 5.2 | Simon | Période cachée, sous-groupe abélien, transformée Hadamard | ✓ | | ✓ | |

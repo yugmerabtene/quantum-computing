@@ -1,4 +1,4 @@
-# Partie IV : Matériel et perspectives (Séances 12–14)
+# Partie IV : Matériel et perspectives (Chapitres 12–14)
 
 ## Présentation
 
@@ -6,25 +6,25 @@ Cette dernière partie du cours explore les différentes architectures physiques
 
 ## Tableau récapitulatif
 
-| Séance | Sujet | Bibliothèques | Concepts clés |
+| Chapitre | Sujet | Bibliothèques | Concepts clés |
 |--------|-------|---------------|---------------|
-| [12.1 — Supraconducteurs](seance12-1-supraconducteurs.md) | Qubits supraconducteurs, transmons, grille de couplage | QuTiP, numpy | Anharmonicité, Hamiltonien transmon, ZZ-crosstalk, IBM Condor (433Q), Google Willow (105Q, 99.97%) |
-| [12.2 — Atomes neutres et ions](seance12-2-atomes-neutres-ions.md) | Atomes neutres, pinces optiques, ions piégés, Rydberg | Cirq, QuTiP, numpy | Blocade de Rydberg, portes CZ, reconfigurabilité dynamique, Harvard/QuEra 48QL, Oxford Ionics 99.99% |
-| [13.1 — Topologiques](seance13-1-topologiques.md) | Fermions de Majorana, qubits topologiques, protection | numpy, scipy | Modèle de Kitaev, MZM, gap topologique, Microsoft Majorana 1, invariant topologique |
-| [13.2 — Photoniques et réseaux](seance13-2-photoniques-reseaux.md) | LOQC, architecture Entanglement-First, codes SHYPS | QuTiP, numpy, scipy | États de Bell, pertes fibre, répéteurs quantiques, Photonic Inc., Internet quantique |
-| [14.1 — Applications](seance14-1-applications-industrielles.md) | Chimie, optimisation, QML, finance | PennyLane, numpy | VQE, QAOA, QUBO, QNN, marché 72 G$ (McKinsey 2025) |
-| [14.2 — Défis ouverts](seance14-2-defis-ouverts.md) | Scalabilité, correction d'erreur, main-d'œuvre, post-quantique | numpy, time | Overhead QEC, feuille de route 2027–2029, NIST, point de croisement classique/quantique |
+| [12.1 — Supraconducteurs](chapitre12-1-supraconducteurs.md) | Qubits supraconducteurs, transmons, grille de couplage | QuTiP, numpy | Anharmonicité, Hamiltonien transmon, ZZ-crosstalk, IBM Condor (433Q), Google Willow (105Q, 99.97%) |
+| [12.2 — Atomes neutres et ions](chapitre12-2-atomes-neutres-ions.md) | Atomes neutres, pinces optiques, ions piégés, Rydberg | Cirq, QuTiP, numpy | Blocade de Rydberg, portes CZ, reconfigurabilité dynamique, Harvard/QuEra 48QL, Oxford Ionics 99.99% |
+| [13.1 — Topologiques](chapitre13-1-topologiques.md) | Fermions de Majorana, qubits topologiques, protection | numpy, scipy | Modèle de Kitaev, MZM, gap topologique, Microsoft Majorana 1, invariant topologique |
+| [13.2 — Photoniques et réseaux](chapitre13-2-photoniques-reseaux.md) | LOQC, architecture Entanglement-First, codes SHYPS | QuTiP, numpy, scipy | États de Bell, pertes fibre, répéteurs quantiques, Photonic Inc., Internet quantique |
+| [14.1 — Applications](chapitre14-1-applications-industrielles.md) | Chimie, optimisation, QML, finance | PennyLane, numpy | VQE, QAOA, QUBO, QNN, marché 72 G$ (McKinsey 2025) |
+| [14.2 — Défis ouverts](chapitre14-2-defis-ouverts.md) | Scalabilité, correction d'erreur, main-d'œuvre, post-quantique | numpy, time | Overhead QEC, feuille de route 2027–2029, NIST, point de croisement classique/quantique |
 
 ## Prérequis
 
-- **Séances 1–4** : fondements de la mécanique quantique, formalisme de Dirac
-- **Séances 5–8** : algorithmes quantiques (QFT, QPE, VQE, QAOA)
-- **Séances 9–11** : correction d'erreur quantique, codes de surface, QLDPC
+- **Chapitres 1–4** : fondements de la mécanique quantique, formalisme de Dirac
+- **Chapitres 5–8** : algorithmes quantiques (QFT, QPE, VQE, QAOA)
+- **Chapitres 9–11** : correction d'erreur quantique, codes de surface, QLDPC
 - **Python** : numpy, QuTiP, Cirq, PennyLane, scipy
 
 ## Plan détaillé
 
-### Séance 12.1 — Qubits supraconducteurs (seance12-1-supraconducteurs.md)
+### Chapitre 12.1 — Qubits supraconducteurs (chapitre12-1-supraconducteurs.md)
 
 1. Circuits LC et non-linéarité Josephson
    - Hamiltonien du transmon, anharmonicité $\alpha = -E_C$
@@ -35,7 +35,7 @@ Cette dernière partie du cours explore les différentes architectures physiques
 4. Diaphonie (crosstalk) et grille de couplage
 5. Défis : temps de cohérence, passage à l'échelle
 
-### Séance 12.2 — Atomes neutres et ions piégés (seance12-2-atomes-neutres-ions.md)
+### Chapitre 12.2 — Atomes neutres et ions piégés (chapitre12-2-atomes-neutres-ions.md)
 
 1. Pièges optiques, pinces optiques, reconfigurabilité
 2. États de Rydberg, blocade de Rydberg, portes CZ
@@ -44,7 +44,7 @@ Cette dernière partie du cours explore les différentes architectures physiques
 5. Oxford Ionics : 99.99% fidélité, $T_2 > 10$ s
 6. Comparaison des plateformes (atomes, ions, supra)
 
-### Séance 13.1 — Qubits topologiques (seance13-1-topologiques.md)
+### Chapitre 13.1 — Qubits topologiques (chapitre13-1-topologiques.md)
 
 1. Fermions de Majorana, modes zéro (MZM)
 2. Modèle de Kitaev : Hamiltonien, gap topologique
@@ -52,7 +52,7 @@ Cette dernière partie du cours explore les différentes architectures physiques
 4. Microsoft Majorana 1 : puce topologique, protection
 5. Comparaison avec supraconducteurs et atomes neutres
 
-### Séance 13.2 — Qubits photoniques et réseaux (seance13-2-photoniques-reseaux.md)
+### Chapitre 13.2 — Qubits photoniques et réseaux (chapitre13-2-photoniques-reseaux.md)
 
 1. LOQC : codage dual-rail, beam splitters, KLM
 2. Architecture Entanglement-First (Photonic Inc.)
@@ -60,7 +60,7 @@ Cette dernière partie du cours explore les différentes architectures physiques
 4. Distribution d'intrication, pertes fibre, répéteurs
 5. Simulation QuTiP : état de Bell bruité, atténuation
 
-### Séance 14.1 — Applications industrielles (seance14-1-applications-industrielles.md)
+### Chapitre 14.1 — Applications industrielles (chapitre14-1-applications-industrielles.md)
 
 1. Chimie quantique : VQE, simulation moléculaire, drug discovery
 2. Optimisation : QAOA, QUBO, finance, logistique
@@ -68,7 +68,7 @@ Cette dernière partie du cours explore les différentes architectures physiques
 4. PennyLane : classification avec QNN
 5. Marché 72 G$ (McKinsey 2025), feuille de route consulting
 
-### Séance 14.2 — Défis ouverts (seance14-2-defis-ouverts.md)
+### Chapitre 14.2 — Défis ouverts (chapitre14-2-defis-ouverts.md)
 
 1. Scalabilité : nombre, qualité, connectivité des qubits
 2. Coût de la correction d'erreur : overhead physique/logique

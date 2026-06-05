@@ -1,4 +1,4 @@
-# Syllabus — Calcul Quantique : Fondements, Algorithmes et Perspectives
+# Syllabus — Quantum Computing Engineering
 
 **Niveau :** Master / Doctorat (M2 / PhD)
 **Durée :** 28 séances (2 × 2h par semaine, 14 semaines)
@@ -98,7 +98,7 @@ Une importance particulière est accordée à l'articulation entre théorie et p
 
 ### PARTIE I : FONDEMENTS
 
-| Séance | Contenu | Références |
+| Chapitre | Contenu | Références |
 |--------|---------|------------|
 | **1.1** | **Introduction historique et panorama.** Des machines de Turing au modèle quantique. La boucle de rétroaction physique–information. Le « transistor moment » du quantique (Science, 2026). | [NC00] Ch. 1 ; [Aar13] Ch. 1–3 ; [Sci26] |
 | **1.2** | **Algèbre linéaire complexe pour le calcul quantique.** Espaces de Hilbert, notation de Dirac (bras, kets). Opérateurs linéaires, matrices, adjoints. Produit tensoriel. | [NC00] §2.1 ; [Won22] Ch. 3–4 |
@@ -111,7 +111,7 @@ Une importance particulière est accordée à l'articulation entre théorie et p
 
 ### PARTIE II : ALGORITHMES QUANTIQUES
 
-| Séance | Contenu | Références |
+| Chapitre | Contenu | Références |
 |--------|---------|------------|
 | **5.1** | **Problème de Deutsch et Deutsch–Jozsa.** Parallélisme quantique. Oracle et promesse. Généralisation à n qubits. | [NC00] §1.4, §6.1 ; [RP11] Ch. 7 |
 | **5.2** | **Algorithme de Simon.** Période cachée et transformée de Hadamard. Lien avec la transformée de Fourier quantique. | [NC00] §6.2–6.3 |
@@ -124,7 +124,7 @@ Une importance particulière est accordée à l'articulation entre théorie et p
 
 ### PARTIE III : CORRECTION D'ERREUR ET TOLÉRANCE AUX FAUTES
 
-| Séance | Contenu | Références |
+| Chapitre | Contenu | Références |
 |--------|---------|------------|
 | **9.1** | **Motivation et défis.** Fragilité des qubits. Bruit et décohérence. Différence fondamentale avec la correction classique. | [NC00] §10.1–10.2 ; [Pre98] §5 |
 | **9.2** | **Codes correcteurs quantiques.** Code à répétition de phase. Code de Shor [9,1,3]. Codes CSS (Calderbank–Shor–Steane). Stabilisateurs. | [NC00] §10.3–10.4 ; [Üst25] |
@@ -135,7 +135,7 @@ Une importance particulière est accordée à l'articulation entre théorie et p
 
 ### PARTIE IV : MATÉRIEL, ARCHITECTURES ET PERSPECTIVES
 
-| Séance | Contenu | Références |
+| Chapitre | Contenu | Références |
 |--------|---------|------------|
 | **12.1** | **Qubits supraconducteurs.** Transmons, grille de couplage. IBM Condor (433 qubits), Google Willow (105 qubits, 99,97% fidélité). Limites et défis. | [IBM24] ; [Goo24] |
 | **12.2** | **Atomes neutres et ions piégés.** Reconfigurabilité dynamique (Harvard/QuEra). Haute fidélité (Oxford Ionics 99,99%). Portes à deux qubits. | [Har25] ; [Day25] ; [QuE25] |

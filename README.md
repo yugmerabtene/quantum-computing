@@ -1,4 +1,4 @@
-# Calcul Quantique : Fondements, Algorithmes et Perspectives
+# Quantum Computing Engineering
 
 **Niveau :** Master / Doctorat (M2 / PhD)  
 **Durée :** 28 séances (2 × 2h par semaine, 14 semaines)  
@@ -6,52 +6,52 @@
 
 ## Description
 
-Ce cours propose une couverture complète du calcul quantique, depuis les fondements mathématiques et physiques jusqu'aux algorithmes avancés, à la correction d'erreur et aux architectures matérielles contemporaines. Il s'appuie sur les développements les plus récents (2024–2026) — notamment les processeurs Willow (Google), Condor (IBM), Majorana 1 (Microsoft), les atomes neutres (Harvard/QuEra) et les progrès en correction d'erreur tolérante aux fautes.
+Ce cours d'ingénierie propose une couverture complète du calcul quantique, depuis les fondements mathématiques et physiques jusqu'aux algorithmes avancés, à la correction d'erreur et aux architectures matérielles contemporaines. Il s'appuie sur les développements les plus récents (2024–2026) — notamment les processeurs Willow (Google), Condor (IBM), Majorana 1 (Microsoft), les atomes neutres (Harvard/QuEra) et les progrès en correction d'erreur tolérante aux fautes.
 
 Une importance particulière est accordée à l'articulation entre théorie et pratique : chaque module théorique est associé à une implémentation en Python sur simulateurs et machines réelles. La progression pédagogique va de la **simulation physique des qubits** (Hamiltoniens, décohérence via QuTiP) à **l'abstraction circuit** (Qiskit, Cirq), puis à **l'apprentissage automatique quantique** (PennyLane) et à la **correction d'erreur** (Stim).
 
 ## Plan du cours
 
-### Partie I : Fondements (Séances 1–4)
+### Partie I : Fondements (Chapitres 1–4)
 
-| Séance | Sujet | Fichier |
+| Chapitre | Sujet | Fichier |
 |--------|-------|---------|
-| 1.1 | Introduction historique et panorama | [cours/partie1-fondements/seance1-1-introduction.md](cours/partie1-fondements/seance1-1-introduction.md) |
-| 1.2 | Algèbre linéaire complexe | [cours/partie1-fondements/seance1-2-algebre-lineaire.md](cours/partie1-fondements/seance1-2-algebre-lineaire.md) |
-| 2.1 | Postulats de la mécanique quantique | [cours/partie1-fondements/seance2-1-postulats-mq.md](cours/partie1-fondements/seance2-1-postulats-mq.md) |
-| 2.2 | Superposition et intrication | [cours/partie1-fondements/seance2-2-concepts-cles.md](cours/partie1-fondements/seance2-2-concepts-cles.md) |
-| 3.1 | Portes quantiques | [cours/partie1-fondements/seance3-1-portes-quantiques.md](cours/partie1-fondements/seance3-1-portes-quantiques.md) |
-| 3.2 | Modèle circuit | [cours/partie1-fondements/seance3-2-modele-circuit.md](cours/partie1-fondements/seance3-2-modele-circuit.md) |
-| 4.1 | Opérateur densité et systèmes composites | [cours/partie1-fondements/seance4-1-operateur-densite.md](cours/partie1-fondements/seance4-1-operateur-densite.md) |
-| 4.2 | Canaux quantiques et bruit | [cours/partie1-fondements/seance4-2-canaux-bruit.md](cours/partie1-fondements/seance4-2-canaux-bruit.md) |
+| 1.1 | Introduction historique et panorama | [cours/partie1-fondements/chapitre1-1-introduction.md](cours/partie1-fondements/chapitre1-1-introduction.md) |
+| 1.2 | Algèbre linéaire complexe | [cours/partie1-fondements/chapitre1-2-algebre-lineaire.md](cours/partie1-fondements/chapitre1-2-algebre-lineaire.md) |
+| 2.1 | Postulats de la mécanique quantique | [cours/partie1-fondements/chapitre2-1-postulats-mq.md](cours/partie1-fondements/chapitre2-1-postulats-mq.md) |
+| 2.2 | Superposition et intrication | [cours/partie1-fondements/chapitre2-2-concepts-cles.md](cours/partie1-fondements/chapitre2-2-concepts-cles.md) |
+| 3.1 | Portes quantiques | [cours/partie1-fondements/chapitre3-1-portes-quantiques.md](cours/partie1-fondements/chapitre3-1-portes-quantiques.md) |
+| 3.2 | Modèle circuit | [cours/partie1-fondements/chapitre3-2-modele-circuit.md](cours/partie1-fondements/chapitre3-2-modele-circuit.md) |
+| 4.1 | Opérateur densité et systèmes composites | [cours/partie1-fondements/chapitre4-1-operateur-densite.md](cours/partie1-fondements/chapitre4-1-operateur-densite.md) |
+| 4.2 | Canaux quantiques et bruit | [cours/partie1-fondements/chapitre4-2-canaux-bruit.md](cours/partie1-fondements/chapitre4-2-canaux-bruit.md) |
 
-### Partie II : Algorithmes quantiques (Séances 5–8)
+### Partie II : Algorithmes quantiques (Chapitres 5–8)
 
-| Séance | Sujet | Fichier |
+| Chapitre | Sujet | Fichier |
 |--------|-------|---------|
-| 5.1 | Deutsch et Deutsch–Jozsa | [cours/partie2-algorithmes/seance5-1-deutsch-jozsa.md](cours/partie2-algorithmes/seance5-1-deutsch-jozsa.md) |
-| 5.2 | Algorithme de Simon | [cours/partie2-algorithmes/seance5-2-simon.md](cours/partie2-algorithmes/seance5-2-simon.md) |
-| 6.1 | Quantum Fourier Transform (QFT) | [cours/partie2-algorithmes/seance6-1-qft.md](cours/partie2-algorithmes/seance6-1-qft.md) |
-| 6.2 | Quantum Phase Estimation (QPE) | [cours/partie2-algorithmes/seance6-2-qpe.md](cours/partie2-algorithmes/seance6-2-qpe.md) |
-| 7.1 | Algorithme de Shor | [cours/partie2-algorithmes/seance7-1-shor.md](cours/partie2-algorithmes/seance7-1-shor.md) |
-| 7.2 | Cryptographie quantique | [cours/partie2-algorithmes/seance7-2-cryptographie.md](cours/partie2-algorithmes/seance7-2-cryptographie.md) |
-| 8.1 | Algorithme de Grover | [cours/partie2-algorithmes/seance8-1-grover.md](cours/partie2-algorithmes/seance8-1-grover.md) |
-| 8.2 | Applications de Grover | [cours/partie2-algorithmes/seance8-2-applications-grover.md](cours/partie2-algorithmes/seance8-2-applications-grover.md) |
+| 5.1 | Deutsch et Deutsch–Jozsa | [cours/partie2-algorithmes/chapitre5-1-deutsch-jozsa.md](cours/partie2-algorithmes/chapitre5-1-deutsch-jozsa.md) |
+| 5.2 | Algorithme de Simon | [cours/partie2-algorithmes/chapitre5-2-simon.md](cours/partie2-algorithmes/chapitre5-2-simon.md) |
+| 6.1 | Quantum Fourier Transform (QFT) | [cours/partie2-algorithmes/chapitre6-1-qft.md](cours/partie2-algorithmes/chapitre6-1-qft.md) |
+| 6.2 | Quantum Phase Estimation (QPE) | [cours/partie2-algorithmes/chapitre6-2-qpe.md](cours/partie2-algorithmes/chapitre6-2-qpe.md) |
+| 7.1 | Algorithme de Shor | [cours/partie2-algorithmes/chapitre7-1-shor.md](cours/partie2-algorithmes/chapitre7-1-shor.md) |
+| 7.2 | Cryptographie quantique | [cours/partie2-algorithmes/chapitre7-2-cryptographie.md](cours/partie2-algorithmes/chapitre7-2-cryptographie.md) |
+| 8.1 | Algorithme de Grover | [cours/partie2-algorithmes/chapitre8-1-grover.md](cours/partie2-algorithmes/chapitre8-1-grover.md) |
+| 8.2 | Applications de Grover | [cours/partie2-algorithmes/chapitre8-2-applications-grover.md](cours/partie2-algorithmes/chapitre8-2-applications-grover.md) |
 
-### Partie III : Correction d'erreur (Séances 9–11)
+### Partie III : Correction d'erreur (Chapitres 9–11)
 
-| Séance | Sujet | Fichier |
+| Chapitre | Sujet | Fichier |
 |--------|-------|---------|
-| 9.1 | Motivation et défis | [cours/partie3-correction-erreur/seance9-1-motivation.md](cours/partie3-correction-erreur/seance9-1-motivation.md) |
-| 9.2 | Codes correcteurs quantiques | [cours/partie3-correction-erreur/seance9-2-codes-correcteurs.md](cours/partie3-correction-erreur/seance9-2-codes-correcteurs.md) |
-| 10.1 | Codes de surface | [cours/partie3-correction-erreur/seance10-1-codes-surface.md](cours/partie3-correction-erreur/seance10-1-codes-surface.md) |
-| 10.2 | Codes QLDPC et avancés | [cours/partie3-correction-erreur/seance10-2-codes-qldpc.md](cours/partie3-correction-erreur/seance10-2-codes-qldpc.md) |
-| 11.1 | Calcul tolérant aux fautes | [cours/partie3-correction-erreur/seance11-1-calcul-tolerant.md](cours/partie3-correction-erreur/seance11-1-calcul-tolerant.md) |
-| 11.2 | Avancées 2024–2026 | [cours/partie3-correction-erreur/seance11-2-avancees-2024-2026.md](cours/partie3-correction-erreur/seance11-2-avancees-2024-2026.md) |
+| 9.1 | Motivation et défis | [cours/partie3-correction-erreur/chapitre9-1-motivation.md](cours/partie3-correction-erreur/chapitre9-1-motivation.md) |
+| 9.2 | Codes correcteurs quantiques | [cours/partie3-correction-erreur/chapitre9-2-codes-correcteurs.md](cours/partie3-correction-erreur/chapitre9-2-codes-correcteurs.md) |
+| 10.1 | Codes de surface | [cours/partie3-correction-erreur/chapitre10-1-codes-surface.md](cours/partie3-correction-erreur/chapitre10-1-codes-surface.md) |
+| 10.2 | Codes QLDPC et avancés | [cours/partie3-correction-erreur/chapitre10-2-codes-qldpc.md](cours/partie3-correction-erreur/chapitre10-2-codes-qldpc.md) |
+| 11.1 | Calcul tolérant aux fautes | [cours/partie3-correction-erreur/chapitre11-1-calcul-tolerant.md](cours/partie3-correction-erreur/chapitre11-1-calcul-tolerant.md) |
+| 11.2 | Avancées 2024–2026 | [cours/partie3-correction-erreur/chapitre11-2-avancees-2024-2026.md](cours/partie3-correction-erreur/chapitre11-2-avancees-2024-2026.md) |
 
-### Partie IV : Matériel et perspectives (Séances 12–14)
+### Partie IV : Matériel et perspectives (Chapitres 12–14)
 
-| Séance | Sujet |
+| Chapitre | Sujet |
 |--------|-------|
 | 12.1 | Qubits supraconducteurs (Transmons, IBM Condor, Google Willow) |
 | 12.2 | Atomes neutres et ions piégés (Harvard/QuEra) |
@@ -132,10 +132,10 @@ pip install -r code/requirements.txt
 
 ```
 cours/                         # Contenu théorique (Markdown + LaTeX)
-├── partie1-fondements/        # Sessions 1-4
-├── partie2-algorithmes/       # Sessions 5-8
-├── partie3-correction-erreur/ # Sessions 9-11
-└── partie4-materiel/          # Sessions 12-14
+├── partie1-fondements/        # Chapitres 1-4
+├── partie2-algorithmes/       # Chapitres 5-8
+├── partie3-correction-erreur/ # Chapitres 9-11
+└── partie4-materiel/          # Chapitres 12-14
 
 labs/                          # Travaux pratiques (Jupyter notebooks)
 ├── lab1-simulation-qubit-bloch/
