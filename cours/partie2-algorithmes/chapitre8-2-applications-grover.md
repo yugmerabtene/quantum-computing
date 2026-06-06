@@ -1,47 +1,145 @@
 # Chapitre 8.2 — Applications de Grover
 
-## Objectifs
+## Ce que vous allez apprendre
 
-- Maîtriser le comptage quantique (Quantum Counting) comme extension de Grover
-- Analyser la résolution de problèmes NP avec Grover
-- Comprendre les bornes inférieures et l'optimalité
-- Étudier la robustesse au bruit
+- Maîtriser le **comptage quantique** (Quantum Counting) comme extension de Grover + QPE
+- Comprendre comment Grover résout des **problèmes NP** (SAT, coloriage, etc.)
+- Connaître les **bornes inférieures** et l'optimalité de Grover
+- Étudier la **robustesse au bruit** et les seuils de tolérance
+- Découvrir les **applications avancées** : minimum quantique, marche quantique
 
 ---
 
-## 1. Comptage quantique (Quantum Counting)
+## Motivation
 
-### Problème
+L'algorithme de Grover (chapitre 8.1) trouve un élément marqué parmi $N$ en $O(\sqrt{N})$ requêtes. Mais que peut-on en faire d'autre ?
 
-Soit $f : \{0,1\}^n \to \{0,1\}$. Estimer le nombre $M = |\{x : f(x) = 1\}|$ (taille du espace de solutions) avec une accélération quantique.
+D'abord, on peut **compter** le nombre de solutions sans les énumérer toutes — c'est le comptage quantique, qui combine Grover et la QPE (chapitre 6.2). Ensuite, Grover s'applique à tout problème de recherche : résoudre un Sudoku, trouver un chemin dans un labyrinthe, optimiser une fonction. Même si l'accélération n'est que quadratique, elle est **universelle** et s'applique à des problèmes pratiques.
 
-### Algorithme
+Enfin, comprendre les limites de Grover (bornes inférieures, robustesse au bruit) est essentiel pour savoir quand l'algorithme est vraiment utile sur du hardware réel.
 
-Le comptage quantique combine Grover et QPE. L'opérateur de Grover $G$ a pour valeurs propres :
+---
+
+## Idée principale
+
+Grover est un « couteau suisse » quantique. Si vous avez un problème qui peut s'énoncer comme « trouver $x$ tel que $f(x) = 1$ », Grover peut vous aider, même si $f$ est un algorithme complexe qui vérifie des contraintes.
+
+Le comptage quantique va plus loin : au lieu de trouver UNE solution, il estime COMBIEN il y en a. C'est comme passer de « il y a au moins un trésor sur cette île » à « il y a environ 42 trésors ».
+
+Et quand on ne connaît pas le nombre de solutions ? L'algorithme de Boyer et al. utilise un nombre d'itérations aléatoire pour s'adapter automatiquement.
+
+---
+
+## Contenu du cours
+
+### Section 1 : Comptage quantique (Quantum Counting)
+
+**Problème** : Soit $f : \{0,1\}^n \to \{0,1\}$. Estimer $M = |\{x : f(x) = 1\}|$ (nombre de solutions).
+
+**Classique** : $O(N)$ évaluations pour compter exactement, $O(N/\epsilon^2)$ pour estimer à $\epsilon N$ près.
+
+**Quantique** : $O(\sqrt{N}/\epsilon)$ évaluations.
+
+**Algorithme** : Le comptage quantique combine Grover et QPE. L'opérateur de Grover $G = D \cdot O$ a pour valeurs propres :
 
 $$e^{\pm 2i\theta}, \quad \text{où} \quad \sin\theta = \sqrt{\frac{M}{N}}$$
 
-En appliquant QPE sur $G$, on estime $2\theta$, d'où $M = N \sin^2\theta$.
+**Intuition** : l'angle de rotation $\theta$ dans le plan de Grover dépend du nombre de solutions $M$. Plus il y a de solutions, plus $\theta$ est grand. En estimant $\theta$ par QPE, on déduit $M = N \sin^2\theta$.
 
-### Analyse de précision
+**Exemple** : $N = 16$, $M = 3$. $\sin\theta = \sqrt{3/16} \approx 0.433$, $\theta \approx 0.448$ rad. QPE estime $\theta$, puis on calcule $M = 16 \sin^2\theta \approx 3$.
 
-Pour une estimation à $\epsilon$ près, le comptage quantique utilise $O(1/\epsilon)$ itérations, contre $O(1/\epsilon^2)$ classiquement.
+### Section 2 : Résolution de problèmes NP avec Grover
+
+**SAT (Satisfiabilité)** : Pour une formule CNF à $n$ variables, l'espace de recherche est $N = 2^n$.
+
+**Approche** : Utiliser Grover avec un oracle qui vérifie la formule. L'oracle évalue la formule sur l'entrée et marque si elle est satisfaite.
+
+$$k_{\text{opt}} = \frac{\pi}{4} \sqrt{2^n}$$
+
+**Complexité** : $O(\sqrt{2^n} \cdot \text{taille de l'oracle})$. L'oracle pour une clause $l_1 \lor l_2 \lor \cdots \lor l_k$ utilise $O(k)$ portes.
+
+**Intuition** : Grover ne résout pas P = NP. Il accélère la recherche exhaustive de $O(2^n)$ à $O(2^{n/2})$, mais ça reste exponentiel. C'est comme passer de 1 an à 1 heure pour un problème de 40 variables.
+
+**Comparaison classique vs quantique** :
+
+| Problème | Classique | Quantique (Grover) |
+|----------|-----------|-------------------|
+| 3-SAT | $O(1.307^n)$ | $O(2^{n/2})$ |
+| Recherche | $O(N)$ | $O(\sqrt{N})$ |
+| Max-Cut | $O(2^n)$ | $O(2^{n/2})$ |
+
+### Section 3 : Bornes inférieures
+
+**Optimalité de Grover** (rappel) : Tout algorithme quantique pour la recherche non structurée nécessite $\Omega(\sqrt{N})$ requêtes.
+
+**Autres problèmes** :
+
+| Problème | Borne inférieure | Algorithme |
+|----------|-----------------|------------|
+| Recherche | $\Omega(\sqrt{N})$ | Grover |
+| Comptage (précision $\epsilon$) | $\Omega(1/\epsilon)$ | Comptage quantique |
+| Collision | $\Omega(N^{1/3})$ | BHT |
+| Élément distinct | $\Omega(N^{2/3})$ | — |
+
+**Méthode polynomiale** : Les amplitudes après $k$ requêtes sont des polynômes de degré $k$ sur les bits de l'oracle. Pour distinguer $N$ oracles différents, le polynôme doit avoir $\Omega(\sqrt{N})$ oscillations, donc $k = \Omega(\sqrt{N})$.
+
+### Section 4 : Robustesse au bruit
+
+**Canal de déphasage** : $\mathcal{E}(\rho) = (1-p)\rho + p \, Z\rho Z$
+
+L'algorithme de Grover dépend de la **cohérence** des qubits. Le bruit de déphasage détruit cette cohérence et réduit la probabilité de succès.
+
+**Seuil de tolérance** : Grover reste efficace tant que :
+
+$$p < \frac{1}{k_{\text{opt}}} \approx \frac{4}{\pi\sqrt{N}}$$
+
+**Intuition** : chaque itération accumule un peu de bruit. Après $k_{\text{opt}}$ itérations, le bruit total doit rester petit. Plus $N$ est grand, plus $k_{\text{opt}}$ est grand, plus le seuil de tolérance est bas.
+
+**Exemple** : $n = 10$ ($N = 1024$), $k_{\text{opt}} = 25$. Seuil : $p < 1/25 = 0.04$. Si le taux de bruit par porte dépasse 4%, Grover devient inefficace.
+
+---
+
+## Exemple guidé
+
+**Comptage quantique** : $N = 16$ ($n = 4$), solutions = $\{2, 5, 11\}$, donc $M = 3$.
+
+$\sin\theta = \sqrt{3/16} \approx 0.433$. $\theta \approx 0.448$ rad.
+
+L'opérateur de Grover $G$ a pour valeurs propres $e^{\pm 2i\theta} = e^{\pm 0.896i}$.
+
+Avec $m = 5$ qubits de contrôle pour la QPE, on estime $2\theta/(2\pi) \approx 0.143$.
+
+Mesure attendue : $k \approx 0.143 \times 32 \approx 4.6$, donc $k = 4$ ou $5$.
+
+Si $k = 5$ : $\theta_{\text{est}} = 5\pi/32 \approx 0.491$. $M_{\text{est}} = 16 \sin^2(0.491) \approx 3.6$.
+
+Si $k = 4$ : $\theta_{\text{est}} = 4\pi/32 = 0.393$. $M_{\text{est}} = 16 \sin^2(0.393) \approx 2.4$.
+
+La moyenne donne $M \approx 3$. ✓
+
+---
+
+## Implémentation Python
 
 ```python
 import numpy as np
 from qiskit import QuantumCircuit
 from qiskit_aer import AerSimulator
 
+# --- Oracle qui marque plusieurs solutions ---
 def oracle_comptage(qc, n, solutions):
     """
     Oracle qui marque les états dans la liste 'solutions'.
+    Pour chaque solution, on applique un phase flip.
     """
     target_bits = [format(s, f'0{n}b') for s in solutions]
     for target in target_bits:
+        # Amener |target⟩ → |11...1⟩
         for i, bit in enumerate(target):
             if bit == '0':
                 qc.x(i)
 
+        # Phase flip sur |11...1⟩
         if n == 1:
             qc.z(0)
         else:
@@ -49,12 +147,14 @@ def oracle_comptage(qc, n, solutions):
             qc.mcx(list(range(n - 1)), n - 1)
             qc.h(n - 1)
 
+        # Restaurer
         for i, bit in enumerate(target):
             if bit == '0':
                 qc.x(i)
 
+# --- Diffuseur de Grover ---
 def diffuseur(qc, n):
-    """Diffuseur de Grover standard"""
+    """Diffuseur standard : inversion autour de la moyenne"""
     qc.h(range(n))
     qc.x(range(n))
     if n == 1:
@@ -66,9 +166,10 @@ def diffuseur(qc, n):
     qc.x(range(n))
     qc.h(range(n))
 
+# --- Comptage quantique : QPE sur l'opérateur de Grover ---
 def comptage_quantique(n, solutions, m_qpe=4):
     """
-    Comptage quantique : QPE sur l'opérateur de Grover.
+    Comptage quantique.
     n : nombre de qubits de recherche
     solutions : liste des états marqués
     m_qpe : qubits de contrôle pour QPE
@@ -76,8 +177,8 @@ def comptage_quantique(n, solutions, m_qpe=4):
     qc = QuantumCircuit(m_qpe + n, m_qpe)
 
     # Hadamard sur tous les qubits
-    qc.h(range(m_qpe))
-    qc.h(range(m_qpe, m_qpe + n))
+    qc.h(range(m_qpe))              # Superposition des contrôles
+    qc.h(range(m_qpe, m_qpe + n))   # Superposition de recherche
 
     # Application contrôlée de G^(2^j)
     for j in range(m_qpe):
@@ -85,7 +186,7 @@ def comptage_quantique(n, solutions, m_qpe=4):
             oracle_comptage(qc, n, solutions)
             diffuseur(qc, n)
 
-    # QFT inverse
+    # QFT inverse sur les qubits de contrôle
     for i in range(m_qpe // 2):
         qc.swap(i, m_qpe - 1 - i)
     for i in range(m_qpe - 1, -1, -1):
@@ -97,13 +198,15 @@ def comptage_quantique(n, solutions, m_qpe=4):
     qc.measure(range(m_qpe), range(m_qpe))
     return qc
 
+# --- Estimation de M à partir des mesures ---
 def estimer_M(counts, n, m_qpe):
     """
-    Estime M = nombre de solutions à partir des mesures.
+    Estime M = nombre de solutions à partir des mesures QPE.
     """
     N = 2**n
     estimates = []
     for bits, count in counts.items():
+        # Convertir les bits en estimation de θ
         theta_est = sum(int(bits[i]) / (2**(i+1)) for i in range(m_qpe)) * np.pi
         M_est = N * np.sin(theta_est)**2
         estimates.append((M_est, count))
@@ -113,7 +216,7 @@ def estimer_M(counts, n, m_qpe):
     M_avg = sum(M * count for M, count in estimates) / total
     return M_avg
 
-# Test : N=16, M=3 solutions
+# --- Test : N=16, M=3 solutions ---
 n = 4
 N = 2**n
 solutions = [2, 5, 11]
@@ -129,166 +232,46 @@ print(f"M estimé (comptage quantique) : {M_est:.2f}")
 print(f"M réel : {len(solutions)}")
 ```
 
-## 2. Résolution de problèmes NP avec Grover
-
-### SAT (Satisfiability)
-
-Pour une formule CNF à $n$ variables, l'espace de recherche est $N = 2^n$.
-
-**Approche naïve** : Utiliser Grover avec un oracle qui vérifie la formule.
-
-$$k_{\text{opt}} = \frac{\pi}{4} \sqrt{2^n}$$
-
-### Complexité
-
-$$O(\sqrt{2^n} \cdot \text{taille de l'oracle})$$
-
-L'oracle pour une clause $l_1 \lor l_2 \lor \cdots \lor l_k$ utilise $O(k)$ portes.
-
-Pour une formule CNF à $m$ clauses : oracle de taille $O(m \cdot n)$.
-
-### Comparaison classique vs quantique
-
-| Problème | Classique | Quantique (Grover) |
-|----------|-----------|-------------------|
-| 3-SAT | $O(1.307^n)$ | $O(2^{n/2})$ |
-| Recherche | $O(N)$ | $O(\sqrt{N})$ |
-| Max-Cut | $O(2^n)$ | $O(2^{n/2})$ |
-
-```python
-import numpy as np
-
-def oracle_sat_3(qc, n, clauses):
-    """
-    Oracle pour 3-SAT.
-    clauses : liste de triplets (var1, var2, var3, signes)
-    Exemple : (0, 1, 2, (True, False, True)) → x₀ ∨ ¬x₁ ∨ x₂
-    """
-    # Pour chaque clause, on utilise un qubit auxiliaire
-    # et une porte multi-contrôlée
-    n_aux = len(clauses)
-    # Note : en pratique, on utilise un registre auxiliaire
-
-    for clause_idx, (v1, v2, v3, signs) in enumerate(clauses):
-        aux = n + clause_idx
-
-        # Appliquer X si signe négatif
-        for var, sign in [(v1, signs[0]), (v2, signs[1]), (v3, signs[2])]:
-            if not sign:
-                qc.x(var)
-
-        # Vérification : clause satisfaite si au moins une variable est 1
-        # On utilise une porte CCX (Toffoli) avec qubit auxiliaire
-        # Clause = l₁ ∨ l₂ ∨ l₃  ⇔  ¬(¬l₁ ∧ ¬l₂ ∧ ¬l₃)
-        # On marque quand la clause est FALSE
-        qc.ccx(v1, v2, aux)
-        qc.cx(aux, v3)
-        qc.ccx(v1, v2, aux)
-
-def grover_sat(n, clauses, target_assignment=None):
-    """
-    Grover pour résoudre une instance SAT.
-    """
-    N = 2**n
-    k_opt = int(np.pi / 4 * np.sqrt(N) - 0.5) + 1
-
-    qc = QuantumCircuit(n, n)
-    qc.h(range(n))
-
-    for _ in range(k_opt):
-        oracle_sat_3(qc, n, clauses)
-        diffuseur(qc, n)
-
-    qc.measure(range(n), range(n))
-    return qc
-```
-
-## 3. Bornes inférieures
-
-### Optimalité de Grover (rappel)
-
-**Théorème** : Tout algorithme quantique pour la recherche non structurée nécessite $\Omega(\sqrt{N})$ requêtes.
-
-### Bornes pour d'autres problèmes
-
-| Problème | Borne inférieure | Atteinte |
-|----------|-----------------|----------|
-| Recherche | $\Omega(\sqrt{N})$ | Grover |
-| Comptage (précision $\epsilon$) | $\Omega(1/\epsilon)$ | Comptage quantique |
-| Collision | $\Omega(N^{1/3})$ | BHT |
-| Élément distinct | $\Omega(N^{2/3})$ | — |
-
-### Méthode de la borne polynomiale (polynomial method)
-
-Les amplitudes après $k$ requêtes sont des polynômes de degré $k$ sur les bits de l'oracle. Pour distinguer $N$ oracles différents, le polynôme doit avoir $\Omega(\sqrt{N})$ oscillations.
-
-```python
-import numpy as np
-
-def borne_inferieure_polynomiale():
-    """
-    Illustration de la méthode polynomiale pour la borne inférieure.
-    """
-    print("=== Méthode polynomiale (Beals et al.) ===")
-    print()
-    print("Principe : Après k appels à l'oracle, la probabilité P(x)")
-    print("est un polynôme de degré ≤ 2k sur f(0), f(1), ..., f(N-1).")
-    print()
-
-    # Pour la recherche, P(x*) = 1 pour exactement un oracle
-    # Un polynôme de degré d qui vaut 1 en un point et 0 ailleurs
-    # doit avoir d = Ω(N) → k = Ω(√N)
-    for N in [16, 32, 64, 128]:
-        k_inf = int(np.sqrt(N) / 2)  # Borne inférieure
-        print(f"N={N} : k ≥ {k_inf} (borne inférieure)")
-
-    print()
-    print("Limitations :")
-    print("  - Ne donne pas exactement π√N/4 mais Ω(√N)")
-    print("  - Constante (π/4) obtenue par analyse géométrique")
-
-borne_inferieure_polynomiale()
-```
-
-**Sortie attendue :**
-
-```
-=== Méthode polynomiale (Beals et al.) ===
-
-Principe : Après k appels à l'oracle, la probabilité P(x)
-est un polynôme de degré ≤ 2k sur f(0), f(1), ..., f(N-1).
-
-N=16 : k ≥ 2 (borne inférieure)
-N=32 : k ≥ 2 (borne inférieure)
-N=64 : k ≥ 4 (borne inférieure)
-N=128 : k ≥ 5 (borne inférieure)
-
-Limitations :
-  - Ne donne pas exactement π√N/4 mais Ω(√N)
-  - Constante (π/4) obtenue par analyse géométrique
-```
-
-## 4. Robustesse au bruit
-
-### Canal de déphasage (dephasing)
-
-L'opération de Grover applique $G = D \cdot O$ qui dépend de la cohérence du système. Le canal de déphasage :
-
-$$\mathcal{E}(\rho) = (1-p)\rho + p \, Z\rho Z$$
-
-détruit la cohérence dans la base $\{|0\rangle, |1\rangle\}$.
-
-### Probabilité de succès avec bruit
-
 ```python
 import numpy as np
 from qiskit import QuantumCircuit
 from qiskit_aer import AerSimulator
 from qiskit.providers.aer.noise import NoiseModel, phase_damping_error
 
+# --- Grover avec bruit de déphasage ---
+def oracle_grover(qc, n, target):
+    """Oracle de Grover (même code que chapitre 8.1)"""
+    target_bits = format(target, f'0{n}b')
+    for i, bit in enumerate(target_bits):
+        if bit == '0':
+            qc.x(i)
+    if n == 1:
+        qc.z(0)
+    else:
+        qc.h(n - 1)
+        qc.mcx(list(range(n - 1)), n - 1)
+        qc.h(n - 1)
+    for i, bit in enumerate(target_bits):
+        if bit == '0':
+            qc.x(i)
+
+def diffuseur_grover(qc, n):
+    """Diffuseur de Grover (même code que chapitre 8.1)"""
+    qc.h(range(n))
+    qc.x(range(n))
+    if n == 1:
+        qc.z(0)
+    else:
+        qc.h(n - 1)
+        qc.mcx(list(range(n - 1)), n - 1)
+        qc.h(n - 1)
+    qc.x(range(n))
+    qc.h(range(n))
+
 def grover_avec_bruit(n, target, p_bruit):
     """
     Grover avec bruit de déphasage.
+    p_bruit : probabilité de déphasage par porte
     """
     # Modèle de bruit
     error = phase_damping_error(p_bruit)
@@ -307,7 +290,6 @@ def grover_avec_bruit(n, target, p_bruit):
 
     qc.measure(range(n), range(n))
 
-    # Simulation avec bruit
     backend = AerSimulator()
     result = backend.run(qc, shots=4096,
                      noise_model=noise_model).result()
@@ -316,6 +298,7 @@ def grover_avec_bruit(n, target, p_bruit):
 
     return prob_target
 
+# --- Analyse de la robustesse ---
 def robustesse_bruit():
     """Analyse de la robustesse en fonction du bruit."""
     n = 4
@@ -336,19 +319,15 @@ def robustesse_bruit():
 robustesse_bruit()
 ```
 
-### Seuil de tolérance
-
-L'algorithme de Grover reste efficace tant que :
-
-$$p < \frac{1}{k_{\text{opt}}} \approx \frac{4}{\pi\sqrt{N}}$$
-
-Pour $n=10$ : $p < 0.04$ environ.
-
 ```python
 import numpy as np
 
+# --- Seuil de tolérance au bruit ---
 def seuil_tolerance():
-    """Calcule le seuil de tolérance au bruit pour Grover."""
+    """
+    Calcule le seuil de tolérance au bruit pour Grover.
+    Au-delà de ce seuil, Grover n'est plus efficace.
+    """
     print("=== Seuil de tolérance au bruit ===")
     print(f"{'n':<5} {'N':<8} {'k_opt':<8} {'Seuil p':<10}")
     print("-" * 35)
@@ -380,32 +359,20 @@ n     N        k_opt    Seuil p
 11    2048     36       0.027778  
 ```
 
-## 5. Applications avancées
-
-### Minimum quantique (Durr-Hoyer)
-
-Trouver le minimum d'une liste non triée en $O(\sqrt{N})$ requêtes.
-
-**Algorithme** :
-1. Choisir un seuil aléatoire $y$
-2. Recherche de Grover pour $x$ tel que $f(x) < y$
-3. Mettre à jour $y$ et répéter
-
-### Estimation de moyenne
-
-L'estimation de la valeur moyenne d'une fonction $f: \{0,1\}^n \to [0,1]$ peut être accélérée quadratiquement par rapport à l'échantillonnage classique.
-
 ```python
 import numpy as np
 
+# --- Algorithme de Durr-Hoyer pour le minimum ---
 def durr_hoyer_minimum(liste):
     """
-    Algorithme de Durr-Hoyer pour trouver le minimum.
+    Algorithme de Durr-Hoyer pour trouver le minimum d'une liste.
+    Complexité : O(√N) requêtes quantiques.
     Version simulée (classique) pour illustration.
     """
     n = len(liste)
     N = 2**int(np.ceil(np.log2(n)))
 
+    # Choisir un seuil initial aléatoire
     idx_seuil = np.random.randint(n)
     seuil = liste[idx_seuil]
 
@@ -413,10 +380,10 @@ def durr_hoyer_minimum(liste):
     while True:
         iterations += 1
         # Recherche de Grover pour x tq liste[x] < seuil
-        # En pratique, cela prend O(√N) requêtes
         candidats = [i for i in range(n) if liste[i] < seuil]
         if not candidats:
             break
+        # Mettre à jour le seuil
         idx_seuil = np.random.choice(candidats)
         seuil = liste[idx_seuil]
 
@@ -431,18 +398,102 @@ print(f"Min réel : {np.min(liste)} à {np.argmin(liste)}")
 idx, val = durr_hoyer_minimum(liste)
 ```
 
-## 6. Exercices
+```python
+import numpy as np
 
-### Exercice 1 : Comptage quantique pour SAT
-Utilisez le comptage quantique pour estimer le nombre de solutions satisfaisant une formule 2-SAT avec $n=8$ variables. Comparez avec l'énumération exhaustive.
+# --- Méthode polynomiale pour les bornes inférieures ---
+def borne_inferieure_polynomiale():
+    """
+    Illustration de la méthode polynomiale (Beals et al.).
+    """
+    print("=== Méthode polynomiale (Beals et al.) ===")
+    print()
+    print("Principe : Après k appels à l'oracle, la probabilité P(x)")
+    print("est un polynôme de degré ≤ 2k sur f(0), f(1), ..., f(N-1).")
+    print()
 
-### Exercice 2 : Grover adaptatif pour plusieurs cibles
-Implémentez Grover lorsque $M$ est inconnu (algorithme de Boyer et al.). Utilisez un nombre d'itérations aléatoire.
+    for N in [16, 32, 64, 128]:
+        k_inf = int(np.sqrt(N) / 2)
+        print(f"N={N} : k ≥ {k_inf} (borne inférieure)")
+
+    print()
+    print("Limitations :")
+    print("  - Ne donne pas exactement π√N/4 mais Ω(√N)")
+    print("  - Constante (π/4) obtenue par analyse géométrique")
+
+borne_inferieure_polynomiale()
+```
+
+**Sortie attendue :**
+
+```
+=== Méthode polynomiale (Beals et al.) ===
+
+Principe : Après k appels à l'oracle, la probabilité P(x)
+est un polynôme de degré ≤ 2k sur f(0), f(1), ..., f(N-1).
+
+N=16 : k ≥ 2 (borne inférieure)
+N=32 : k ≥ 2 (borne inférieure)
+N=64 : k ≥ 4 (borne inférieure)
+N=128 : k ≥ 5 (borne inférieure)
+
+Limitations :
+  - Ne donne pas exactement π√N/4 mais Ω(√N)
+  - Constante (π/4) obtenue par analyse géométrique
+```
+
+---
+
+## Complexité et avantage quantique
+
+| Problème | Classique | Quantique | Avantage |
+|----------|-----------|-----------|----------|
+| Recherche (1 solution) | $O(N)$ | $O(\sqrt{N})$ | Quadratique |
+| Comptage (précision $\epsilon$) | $O(1/\epsilon^2)$ | $O(1/\epsilon)$ | Quadratique |
+| Collision | $O(N^{1/2})$ | $O(N^{1/3})$ | Polynomial |
+| Minimum | $O(N)$ | $O(\sqrt{N})$ | Quadratique |
+| SAT ($n$ variables) | $O(1.307^n)$ | $O(2^{n/2})$ | Quadratique en $2^n$ |
+
+**Pourquoi ces accélérations ?** Grover exploite le parallélisme quantique pour évaluer l'oracle sur toutes les entrées en superposition, puis utilise les interférences pour amplifier les solutions. Le comptage quantique ajoute la QPE pour estimer l'angle de rotation, qui encode le nombre de solutions.
+
+---
+
+## À retenir
+
+1. Le **comptage quantique** combine Grover + QPE pour estimer le nombre de solutions $M$
+2. Grover résout les problèmes **NP** en $O(\sqrt{2^n})$ au lieu de $O(2^n)$, mais ça reste exponentiel
+3. Grover est **optimal** : $\Omega(\sqrt{N})$ est une borne inférieure pour la recherche
+4. Le **bruit** limite l'efficacité : seuil $p < 1/k_{\text{opt}} \approx 4/(\pi\sqrt{N})$
+5. L'algorithme de **Dürr-Høyer** trouve le minimum en $O(\sqrt{N})$
+6. L'algorithme de **Boyer et al.** s'adapte quand le nombre de solutions $M$ est inconnu
+7. Grover est un cas particulier de **marche quantique** sur un graphe complet
+
+---
+
+## Pièges à éviter
+
+1. **Penser que Grover résout NP en polynomial** : $O(\sqrt{2^n}) = O(2^{n/2})$ reste exponentiel
+2. **Oublier que le comptage est une estimation** : il donne $M$ avec une certaine précision, pas exactement
+3. **Négliger le bruit** : pour $n > 10$, le seuil de tolérance est très bas (< 4%)
+4. **Confondre recherche structurée et non structurée** : si le problème a de la structure, des algorithmes classiques peuvent être meilleurs
+5. **Utiliser trop d'itérations** : si $M$ est inconnu, il faut l'algorithme de Boyer et al.
+
+---
+
+## Exercices
+
+### Niveau 1 — Application directe
+
+**Exercice 1** : Utilisez le comptage quantique pour estimer le nombre de solutions d'une formule 2-SAT avec $n=8$ variables. Comparez avec l'énumération exhaustive.
+
+**Exercice 2** : Implémentez Grover lorsque $M$ est inconnu (algorithme de Boyer et al.). Utilisez un nombre d'itérations aléatoire.
 
 ```python
 def grover_boyer(n, oracle, max_iter=100):
     """
     Algorithme de Boyer et al. : Grover avec M inconnu.
+    À chaque essai, on choisit un nombre d'itérations aléatoire,
+    on mesure, et on vérifie si c'est une solution.
     """
     for _ in range(max_iter):
         k = np.random.randint(1, int(np.sqrt(2**n)))
@@ -451,17 +502,17 @@ def grover_boyer(n, oracle, max_iter=100):
         pass
 ```
 
-### Exercice 3 : Bornes inférieures — collision
-Montrez que la recherche de collision nécessite $\Omega(N^{1/3})$ requêtes quantiques. Implémentez l'algorithme BHT.
+### Niveau 2 — Compréhension
 
-### Exercice 4 : Robustesse — canal dépolarisant
-Comparez l'effet du canal dépolarisant vs déphasage sur Grover pour $n=6$. Quel canal est le plus nuisible ?
+**Exercice 3** : Montrez que la recherche de collision nécessite $\Omega(N^{1/3})$ requêtes quantiques. Implémentez l'algorithme BHT.
 
-### Exercice 5 : Application — résolution de Maze
-Utilisez Grover pour trouver un chemin dans un labyrinthe $4 \times 4$. Construisez un oracle qui vérifie la validité du chemin.
+**Exercice 4** : Comparez l'effet du canal dépolarisant vs déphasage sur Grover pour $n=6$. Quel canal est le plus nuisible ?
 
-### Exercice 6 : Quantum Walk — extension de Grover
-Montrez que Grover est un cas particulier de marche quantique (Quantum Walk) sur un graphe complet. Implémentez la marche quantique correspondante.
+### Niveau 3 — Défi
+
+**Exercice 5** : Utilisez Grover pour trouver un chemin dans un labyrinthe $4 \times 4$. Construisez un oracle qui vérifie la validité du chemin.
+
+**Exercice 6** : Montrez que Grover est un cas particulier de marche quantique (Quantum Walk) sur un graphe complet. Implémentez la marche quantique correspondante.
 
 ```python
 import numpy as np
@@ -470,13 +521,20 @@ import qutip as qt
 def quantum_walk_grover(n):
     """
     Marche quantique sur graphe complet = itération de Grover.
+    L'opérateur de coin = Hadamard, l'opérateur de déplacement = oracle.
     """
     N = 2**n
-    # Opérateur de coin : Hadamard
-    # Opérateur de déplacement : oracle
-    # Une itération de marche = G (Grover)
+    # Complétez...
     pass
 ```
+
+---
+
+## Pour aller plus loin
+
+- Les **marches quantiques** (Quantum Walks) généralisent Grover à des graphes non complets
+- L'**algorithme d'Ambainis** pour le problème de l'élément distinct utilise une marche quantique en $O(N^{2/3})$
+- L'**amplitude estimation** est utilisée en finance quantique pour estimer des valeurs attendues
 
 ---
 
