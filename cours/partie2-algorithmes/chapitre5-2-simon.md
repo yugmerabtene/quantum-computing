@@ -1,6 +1,6 @@
 # Chapitre 5.2 — Algorithme de Simon
 
-## Objectifs d'apprentissage
+## Objectifs
 
 - Comprendre le problème de la période cachée en groupe abélien
 - Maîtriser la transformée de Hadamard pour la détection de période

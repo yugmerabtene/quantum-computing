@@ -1,6 +1,6 @@
 # Chapitre 7.2 — Cryptographie quantique
 
-## Objectifs d'apprentissage
+## Objectifs
 
 - Comprendre les protocoles BB84 et E91 de distribution quantique de clés
 - Maîtriser le concept de sécurité informationnelle (information-theoretic security)

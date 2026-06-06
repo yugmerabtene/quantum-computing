@@ -68,15 +68,15 @@ Une importance particulière est accordée à l'articulation entre théorie et p
 | 2 | Intrication, CHSH | QuTiP, Qiskit, Cirq | [labs/lab2-intrication-bell/lab2.ipynb](labs/lab2-intrication-bell/lab2.ipynb) |
 | 3 | Canaux de bruit, décohérence | QuTiP, Qiskit, Stim | [labs/lab3-canaux-bruit/lab3.ipynb](labs/lab3-canaux-bruit/lab3.ipynb) |
 | 4 | Téléportation quantique | QuTiP, Qiskit, Cirq | [labs/lab4-teleportation/lab4.ipynb](labs/lab4-teleportation/lab4.ipynb) |
-| 5 | Deutsch–Jozsa | Qiskit |
-| 6 | QFT et QPE | Qiskit, Cirq |
-| 7 | Shor et factorisation | Qiskit, Cirq |
-| 8 | Grover et recherche | Qiskit, Cirq |
-| 9 | Code à répétition | QuTiP, Qiskit, Stim |
-| 10 | Codes de surface | Stim, pymatching |
-| 11 | VQE et chimie | PennyLane |
-| 12 | QAOA optimisation | PennyLane, Qiskit |
-| 13 | Machines réelles | IBM, Braket |
+| 5 | Deutsch–Jozsa | Qiskit | [labs/lab5-deutsch-jozsa/lab5.ipynb](labs/lab5-deutsch-jozsa/lab5.ipynb) |
+| 6 | QFT et QPE | Qiskit, Cirq | [labs/lab6-qft-qpe/lab6.ipynb](labs/lab6-qft-qpe/lab6.ipynb) |
+| 7 | Shor et factorisation | Qiskit, Cirq | [labs/lab7-shor/lab7.ipynb](labs/lab7-shor/lab7.ipynb) |
+| 8 | Grover et recherche | Qiskit, Cirq | [labs/lab8-grover/lab8.ipynb](labs/lab8-grover/lab8.ipynb) |
+| 9 | Code à répétition | QuTiP, Qiskit, Stim | [labs/lab9-code-repetition/lab9.ipynb](labs/lab9-code-repetition/lab9.ipynb) |
+| 10 | Codes de surface | Stim, pymatching | [labs/lab10-codes-surface/lab10.ipynb](labs/lab10-codes-surface/lab10.ipynb) |
+| 11 | VQE et chimie | PennyLane | [labs/lab11-vqe/lab11.ipynb](labs/lab11-vqe/lab11.ipynb) |
+| 12 | QAOA optimisation | PennyLane, Qiskit | [labs/lab12-qaoa/lab12.ipynb](labs/lab12-qaoa/lab12.ipynb) |
+| 13 | Machines réelles | IBM, Braket | [labs/lab13-machines-reelles/lab13.ipynb](labs/lab13-machines-reelles/lab13.ipynb) |
 
 ## Prérequis
 
@@ -145,6 +145,10 @@ labs/                          # Travaux pratiques (Jupyter notebooks)
 └── ... (jusqu'à lab13)
 
 code/                          # Scripts Python et utilitaires
+├── diagrams/                  # Scripts de génération de figures
+└── requirements.txt
+
+figures/                       # Diagrammes générés (PNG)
 exercices/                     # Devoirs
 references/                    # Ressources complémentaires
 syllabus-quantum-computing.md  # Syllabus détaillé original

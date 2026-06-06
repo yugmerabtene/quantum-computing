@@ -199,17 +199,9 @@ for b0, b1 in [(0,0), (0,1), (1,0), (1,1)]:
     # Qiskit retourne les bits en ordre inverse (MSB en premier)
     bits_recus = result[::-1]
     print(f"Envoyé : {b0}{b1}, Reçu : {bits_recus}")
+```
 
 **Sortie (après réordonnancement) :**
-
-```
-Envoyé : 00, Reçu : 00
-Envoyé : 01, Reçu : 01
-Envoyé : 10, Reçu : 10
-Envoyé : 11, Reçu : 11
-```
-
-**Sortie :**
 
 ```
 Envoyé : 00, Reçu : 00

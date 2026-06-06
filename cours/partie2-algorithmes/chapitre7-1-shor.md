@@ -1,6 +1,6 @@
 # Chapitre 7.1 — Algorithme de Shor
 
-## Objectifs d'apprentissage
+## Objectifs
 
 - Comprendre la réduction factorisation → recherche de période
 - Maîtriser l'exponentiation modulaire quantique

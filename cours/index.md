@@ -13,6 +13,8 @@
 | [4.1 — Opérateur densité](partie1-fondements/chapitre4-1-operateur-densite.md) | Matrice densité, états purs vs mélanges, POVM |
 | [4.2 — Canaux quantiques et bruit](partie1-fondements/chapitre4-2-canaux-bruit.md) | Kraus, décohérence, modèles de bruit |
 
+> **Index Partie I** : [partie1-fondements/index.md](partie1-fondements/index.md)
+
 ## Partie II : Algorithmes quantiques (Chapitres 5–8)
 
 | Chapitre | Sujet |

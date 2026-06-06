@@ -1,6 +1,6 @@
 # Chapitre 8.1 — Algorithme de Grover
 
-## Objectifs d'apprentissage
+## Objectifs
 
 - Comprendre le mécanisme de l'oracle et de l'inversion autour de la moyenne
 - Maîtriser l'analyse de complexité $O(\sqrt{N})$ et la preuve d'optimalité

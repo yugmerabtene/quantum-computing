@@ -1,6 +1,6 @@
 # Chapitre 6.1 — Quantum Fourier Transform (QFT)
 
-## Objectifs d'apprentissage
+## Objectifs
 
 - Maîtriser la définition mathématique de la QFT et ses propriétés
 - Comprendre le circuit $O(n^2)$ et sa décomposition en portes élémentaires

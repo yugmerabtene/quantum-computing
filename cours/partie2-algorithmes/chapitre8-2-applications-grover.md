@@ -1,6 +1,6 @@
 # Chapitre 8.2 — Applications de Grover
 
-## Objectifs d'apprentissage
+## Objectifs
 
 - Maîtriser le comptage quantique (Quantum Counting) comme extension de Grover
 - Analyser la résolution de problèmes NP avec Grover

@@ -169,7 +169,7 @@ graph TD
     P4 --> C13[Ch 14 : Applications, Défis]
 ```
 
-Chaque séance combine :
+Chaque chapitre combine :
 1. **Fondement théorique** — formalisme mathématique
 2. **Démonstration Python** — simulation physique (QuTiP) ou circuit (Qiskit)
 3. **Analyse et interprétation**

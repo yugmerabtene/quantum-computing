@@ -1,6 +1,6 @@
 # Chapitre 5.1 — Algorithme de Deutsch et Deutsch-Jozsa
 
-## Objectifs d'apprentissage
+## Objectifs
 
 - Comprendre le parallélisme quantique et le concept d'oracle
 - Maîtriser l'algorithme de Deutsch (1 qubit) et sa généralisation Deutsch-Jozsa (n qubits)

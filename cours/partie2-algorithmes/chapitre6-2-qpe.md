@@ -1,6 +1,6 @@
 # Chapitre 6.2 — Quantum Phase Estimation (QPE)
 
-## Objectifs d'apprentissage
+## Objectifs
 
 - Maîtriser l'algorithme d'estimation de phase quantique
 - Comprendre l'analyse de précision et la probabilité de succès

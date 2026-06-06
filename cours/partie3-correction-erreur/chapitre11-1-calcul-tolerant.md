@@ -314,7 +314,6 @@ $$
 U_L = U^{\otimes n}, \quad \text{où } U_L \text{ est la porte logique}
 $$
 
-```
 ```python
 import numpy as np
 from qiskit import QuantumCircuit
